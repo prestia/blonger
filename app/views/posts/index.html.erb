@@ -1,0 +1,26 @@
+<% if current_user %>
+<title>Edit Posts</title>
+<h2>Edit Posts</h2>
+<% else %>
+<title>Anthony Prestia | Writings</title>
+<h2>Writings</h2>
+<% end %>
+
+
+<table>
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= link_to post.title, post %></td>
+    <td><%= post.pubdate.to_s(:long) %></td>
+	<% if current_user %>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% if current_user %>
+<%= link_to 'New Post', new_post_path %>
+<% end %>

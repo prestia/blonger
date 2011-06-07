@@ -1,0 +1,18 @@
+ <title><%= @post.title %> by Anthony Prestia</title>
+ <p id="notice"><%= notice %></p>
+
+ <article>
+  <header>
+   <h2><%= @post.title %></h2>
+   <p class="pubdate"><time pubdate datetime="<%= @post.pubdate %>"><%= @post.pubdate.to_s(:long) %></time></p>
+  </header>
+
+   <%= sanitize(@post.body) %>
+  <% if current_user %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <% end %>
+  <%= link_to 'Back', root_path %>
+ </article>
+ <script type="text/javascript">$("p").addClass("hyphenate");</script>
+ <script type="text/javascript">$("blockquote").addClass("hyphenate");</script>
+ <script type="text/javascript">Hyphenator.run();</script>
